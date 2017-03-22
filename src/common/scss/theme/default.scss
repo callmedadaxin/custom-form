@@ -1,0 +1,44 @@
+// 字号
+$fs-small: .2rem;
+$fs-base: .24rem;
+$fs-big: .28rem;
+$fs-large: .32rem;
+
+$light-blue: #58B7FF;
+$blue: #20A0FF;
+$dark-blue: #1D8CE0;
+$success: #13CE66;
+$warning: #F7BA2A;
+$danger: #FF4949;
+
+//颜色
+//背景颜色
+$bg-color: #132B4D;
+$bg-low: #1a3354;
+
+//模态框背景
+$modal-bg: rgba(0,0,0, 0.6);
+
+//可点击按钮与文字
+$active-color: #00E5D2;
+
+//警示文字
+$danger-color: #ff6262;
+//点击态文字
+$touch-color: #00CCBB;
+
+//标题栏，导航选中文字
+$white-color: rgba(255,255,255, 0.85);
+$white-10: rgba(255,255,255, 0.1);
+$white-30: rgba(255,255,255, 0.3);
+$white-60: rgba(255,255,255, 0.6);
+//互动文本
+$blue-color-60: rgba(204,238,255, 0.6);
+//未点击态说明文本
+$blue-color-30: rgba(204,238,255, 0.3);
+//分割线
+$line-color: rgba(204,238,255, 0.1);
+
+//阴影
+$shadow-top: 0 0 0 transparent, 0 0 0 transparent, 0 -2px .25em rgba(0,0,0,0.3), 0 0 0 transparent; 
+$shadow-bottom: 0 0 0 transparent, 0 0 0 transparent, 0 0 0 transparent,0 2px .25em rgba(0,0,0,0.3); 

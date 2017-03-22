@@ -1,0 +1,29 @@
+@mixin clearfix{
+	zoom: 1;
+		&:before,
+		&:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear: both;
+		visibility: hidden;
+		font-size: 0;
+		height: 0;
+	}
+}
+
+@mixin text-overflow-hidden{
+	white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin border-left-radius($radius){
+	border-top-left-radius:$radius;
+	border-bottom-left-radius:$radius;
+}
+@mixin border-right-radius($radius){
+	border-top-right-radius:$radius;
+	border-bottom-right-radius:$radius;
+}

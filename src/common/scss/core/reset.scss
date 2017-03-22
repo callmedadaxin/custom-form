@@ -1,0 +1,21 @@
+/* 
+ * 原先的reset绝大多数代码都是多余的，例如span, div根本就没有margin/padding值，没有reset的必要
+ * li标签的list-style继承与ul/ol因此，没有reset的必要
+ * 等等既浪费代码，又增加渲染成本，而且还影响调试(cover样式太多太密集)
+*/
+body{font:14px 'microsoft yahei', arial, sans-serif; -webkit-font-smoothing: antialiased; }
+@media 
+(-webkit-min-device-pixel-ratio: 1.5), 
+(min-resolution: 2dppx){ 
+    /* Retina 下仍使用默认字体渲染 */
+	body { -webkit-font-smoothing: subpixel-antialiased; }
+}
+h1,h2,h3,h4,h5,h6{font-size:100%; margin:0; font-weight:400;}
+body,form,ul,ol,dl,dd,p,a,div{margin:0;padding: 0;}
+ul,ol{list-style-type:none; padding: 0;}
+img{border:0 none;vertical-align:bottom;}
+button,input,select,textarea{font-size:1em; font-family: inherit; *font-family: 'microsoft yahei';}
+a,a:visited,a:hover,a:active{text-decoration:none;}
+a:-webkit-any-link {text-decoration: none;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+*{box-sizing:border-box;}
