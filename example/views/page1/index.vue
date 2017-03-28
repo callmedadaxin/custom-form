@@ -1,6 +1,14 @@
 <template>
-	<custom-form name="test" @on-submit="onSubmit"  :items="formRule" :data="data" :rules="rules">
-  </custom-form>
+  <div>
+    <el-input v-model=""></el-input>
+    <hr>
+    <custom-form name="test" 
+      @on-submit="onSubmit"  
+      :items="formRule" 
+      :data="data" 
+      :rules="rules">
+    </custom-form>
+  </div>
 </template>
 
 <script>
@@ -58,10 +66,10 @@ export default {
           label: '特殊资源',
           options: [{
             label: '线上品牌商赞助',
-            value: 0
+            value: '0'
           }, {
             label: '线下场地免费',
-            value: 1
+            value: '1'
           }]
         }
       },
@@ -71,7 +79,7 @@ export default {
         date: '',
         delivery: false,
         type: [],
-        resource: 0,
+        resource: '0',
         desc: ''
       },
       rules: {
