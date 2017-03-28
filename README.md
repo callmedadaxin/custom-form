@@ -2,6 +2,28 @@
 
 > 根据字段，自动生成表单，表单内容依赖element-ui,支持表单验证
 
+## 安装
+
+``` 
+npm i element-ui -S
+```
+
+### 引用
+
+```
+import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+
+//引用custom-form
+import CustomForm from './scusorm-form/index.js'
+
+Vue.use(ElementUI)
+Vue.use(CustomForm)
+```
+
+### 使用
+
 ```
 <template>
   <custom-form 
