@@ -7,24 +7,33 @@
  */
 
 import Vue from 'vue';
+import VueResource from 'vue-resource';
 
-//interceptor json格式化
+Vue.use(VueResource);
+Vue.http.options.headers = {
+  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+};
+
+Vue.http.options.emulateJSON = true;
+
+// interceptor json格式化
 Vue.http.interceptors.push((request, next) => {
   next((res) => {
-    if(typeof(res.data) == 'string'){
+    if (typeof(res.data) == 'string') {
       var json = {};
 
       try {
         json = JSON.parse(res.data);
-      } catch(e) {
+      } catch (e) {
         json = {
           code: 500,
           message: '服务器异常，请重试！'
         }
       }
 
-      return json;
-    }else{
+      res.data = json;
+      return res;
+    } else {
       return res;
     }
   })
@@ -34,15 +43,11 @@ Vue.http.interceptors.push((request, next) => {
 Vue.http.interceptors.push((request, next) => {
 
   next((res) => {
-    if(typeof(Vue.hideLoading) == 'function') {
+    if (typeof(Vue.hideLoading) == 'function') {
       Vue.hideLoading();
     }
 
-    if(res.data.code == 200) {
-      return res;
-    } else {
-      return Promise.reject(res);
-    }
+    return res;
   })
 });
 
@@ -51,32 +56,50 @@ Vue.http.interceptors.push((request, next) => {
  * @param    {[String]}                 url  [请求api]
  * @param    {[Object]}                 data [参数]
  */
-export const get = function (url, data, showLoading) {
-  if(showLoading && typeof(Vue.showLoading) == 'function') {
+export const get = function(url, data, showLoading) {
+  if (typeof(data) == 'object' && data !== null) {
+    var params = '&' + formatParams(data);
+  }
+
+  if (typeof(data) == 'boolean') {
+    showLoading = data;
+  }
+
+  if (showLoading && typeof(Vue.showLoading) == 'function') {
     Vue.showLoading();
   }
 
-  let params = '&' + formatParams(data);
-
-  return Vue.http.get( ENV_OPT.baseApi + url + params).then(r=>{
-    return r.data;
+  return Vue.http.get(ENV_OPT.baseApi + url + params).then(r => {
+    if (r.data.code == 200) {
+      return r.data;
+    } else {
+      return Promise.reject(r.data);
+    }
   })
 }
 
-export const post = function (url, data, showLoading) {
-  if(showLoading && typeof(Vue.showLoading) == 'function') {
+export const post = function(url, data, showLoading) {
+  if (typeof(data) == 'boolean') {
+    showLoading = data;
+  }
+
+  if (showLoading && typeof(Vue.showLoading) == 'function') {
     Vue.showLoading();
   }
 
-  return Vue.http.post( ENV_OPT.baseApi + url , data ).then(r=>{
-    return r.data;
+  return Vue.http.post(ENV_OPT.baseApi + url, data).then(r => {
+    if (r.data.code == 200) {
+      return r.data;
+    } else {
+      return Promise.reject(r.data);
+    }
   })
 }
 
 function formatParams(data) {
   const arr = [];
 
-  for (let name of Object.keys(data) ) {
+  for (let name of Object.keys(data)) {
     arr.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
   }
 

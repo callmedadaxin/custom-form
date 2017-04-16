@@ -5,7 +5,7 @@
   "author": "王卫新 <wangweixin@moxiu.net>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
+    "example": "node build/dev-server.js",
     "build": "node build/build.js"
   },
   "dependencies": {
